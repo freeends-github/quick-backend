@@ -1,8 +1,9 @@
+const string = require('../helpers/string');
+
 module.exports = (name) => {
-    const nameFormatted = `${name[0].toUpperCase()}${name.substring(1).toLowerCase()}`;
     return `const mongoose = require('mongoose');
 
-const ${nameFormatted}Schema = new mongoose.Schema({
+const ${string.firstUppercase(name)}Schema = new mongoose.Schema({
     created_at: {
         type: Date,
         default: Date.now
@@ -11,8 +12,8 @@ const ${nameFormatted}Schema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-})
+});
 
-module.exports = mongoose.model('${nameFormatted}', ${nameFormatted}Schema);
+module.exports = mongoose.model('${string.firstUppercase(name)}', ${string.firstUppercase(name)}Schema);
     `
 }
