@@ -65,7 +65,8 @@ switch (command) {
   default: {
     console.log(
         chalk.redBright("That command is not available, try the following: \n") +
-        chalk.whiteBright("  -g")
+        chalk.whiteBright("  -g -> Generating command\n") +
+        chalk.whiteBright("  -h -> Help command")
     );
   }
 }
