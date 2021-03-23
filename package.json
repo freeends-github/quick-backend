@@ -1,18 +1,27 @@
 {
   "name": "@ragipgjinovci/quick-backend",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["api", "express", "backend", "quick backend", "quick api", "automatic api", "nodejs"],
+  "keywords": [
+    "api",
+    "express",
+    "backend",
+    "quick backend",
+    "quick api",
+    "automatic api",
+    "nodejs"
+  ],
   "author": "",
   "license": "ISC",
   "bin": {
     "koleg": "index.js"
   },
   "dependencies": {
-    "chalk": "^4.1.0"
+    "chalk": "^4.1.0",
+    "pluralize": "^8.0.0"
   }
 }
