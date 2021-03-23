@@ -8,6 +8,12 @@ const model = require('./templates/model');
 const controller = require('./templates/controller');
 const route = require('./templates/routes');
 const seeder = require('./templates/seeder');
+const userController = require('./templates/auth/userController');
+const userModel = require('./templates/auth/userModel');
+const userRoutes = require('./templates/auth/userRoutes');
+const userSeeder = require('./templates/auth/userSeeder');
+const userValidation = require('./templates/auth/userValidation');
+const userMiddleware = require('./templates/auth/userMiddleware');
 
 generator = {
     generateModel(name) {
@@ -87,6 +93,76 @@ generator = {
         generator.generateModel(name);
         generator.generateController(name);
         generator.generateRoute(name);
+    },
+    generateAuth() {
+        console.log(chalk.greenBright('Adding authentification to the application..'));
+        // Model
+        if(fs.existsSync(path.join(process.cwd(), 'models'))) {
+            fs.writeFile(`./models/User.js`, userModel(), (err) => {
+                if(err) throw new Error(err);
+            });
+        } else {
+            fs.mkdirSync('./models');
+            fs.writeFile(`./models/User.js`, userModel(), (err) => {
+                if(err) throw new Error(err);
+            });
+        }
+        // Controller
+        if(fs.existsSync(path.join(process.cwd(), 'controllers'))) {
+            fs.writeFile(`./controllers/UsersController.js`, userController(), (err) => {
+                if(err) throw new Error(err);
+            });
+        } else {
+            fs.mkdirSync('./controllers');
+            fs.writeFile(`./controllers/UsersController.js`, userController(), (err) => {
+                if(err) throw new Error(err);
+            });
+        }
+        // Routes
+        if(fs.existsSync(path.join(process.cwd(), 'routes'))) {
+            fs.writeFile(`./routes/users.js`, userRoutes(), (err) => {
+                if(err) throw new Error(err);
+            });
+        } else {
+            fs.mkdirSync('./routes');
+            fs.writeFile(`./routes/users.js`, userRoutes(), (err) => {
+                if(err) throw new Error(err);
+            });
+        }
+        // Seeders
+        if(fs.existsSync(path.join(process.cwd(), 'seeders'))) {
+            fs.writeFile(`./seeders/usersSeeder.js`, userSeeder(), (err) => {
+                if(err) throw new Error(err);
+            });
+        } else {
+            fs.mkdirSync('./seeders');
+            fs.writeFile(`./seeders/usersSeeder.js`, userSeeder(), (err) => {
+                if(err) throw new Error(err);
+            });
+        }
+        // Validation
+        if(fs.existsSync(path.join(process.cwd(), 'validation'))) {
+            fs.writeFile(`./validation/validation.js`, userValidation(), (err) => {
+                if(err) throw new Error(err);
+            });
+        } else {
+            fs.mkdirSync('./validation');
+            fs.writeFile(`./validation/validation.js`, userValidation(), (err) => {
+                if(err) throw new Error(err);
+            });
+        }
+        // Middleware
+        if(fs.existsSync(path.join(process.cwd(), 'middlewares'))) {
+            fs.writeFile(`./middlewares/auth.js`, userMiddleware(), (err) => {
+                if(err) throw new Error(err);
+            });
+        } else {
+            fs.mkdirSync('./middlewares');
+            fs.writeFile(`./middlewares/auth.js`, userMiddleware(), (err) => {
+                if(err) throw new Error(err);
+            });
+        }
+        console.log(chalk.greenBright('Authentication added.'));
     }
 }
 

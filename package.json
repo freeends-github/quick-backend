@@ -1,12 +1,12 @@
 {
-  "name": "quick-backend",
-  "version": "1.0.0",
+  "name": "@ragipgjinovci/quick-backend",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["api", "express", "backend", "quick backend", "quick api", "automatic api", "nodejs"],
   "author": "",
   "license": "ISC",
   "bin": {

@@ -5,7 +5,8 @@ const {
   generateController,
   generateRoute,
   generateSeed,
-  generateResource
+  generateResource,
+  generateAuth
 } = require("./functions");
 
 // Checking what command it is
@@ -19,7 +20,7 @@ switch (command) {
         console.log(chalk.redBright("Please provide the type of the resource you want to create!"));
         break;
     }
-    if(!name) {
+    if(!name && type != 'auth') {
         console.log(chalk.redBright("Please provide the name for the resource you want to create!"));
         break;
     }
@@ -44,6 +45,10 @@ switch (command) {
         generateResource(name);
         break;
       }
+      case 'auth': {
+        generateAuth();
+        break;
+      }
     }
     break;
   }
@@ -55,11 +60,13 @@ switch (command) {
     console.log(chalk.cyanBright('\tr') + chalk.white(' - Creates a routes file inside routes directory. If it does not find the directory it creates it.\n\t    It includes creating the crud methods endpoints(getAll, getOne, create, edit, delete). \n\t    Naming format is: Plural lowercase of the name.'));
     console.log(chalk.cyanBright('\ts') + chalk.white(' - Creates a seeder file inside seeders directory. If it does not find the directory it creates it.\n\t    It includes clearing the database of the existing data and creating the boilerplate for seeding new data. \n\t    Naming format is: Plural lowercase of the name ending with Seeder.'));
     console.log(chalk.cyanBright('\tre') + chalk.white(' - Creates all the files for that entity(model, controller, routes).\n\t    It includes creating the files in the correct order and populating them as above. \n\t    Naming format is: See above for the specific resource type.\n'));
+    console.log(chalk.cyanBright('\tauth') + chalk.white(' - Creates all the files the authentication.\n\t    It includes creating the model, controller, routes and a middleware for protecting routes. \n\t    Naming format is: See above for the specific resource type.\n'));
     console.log(chalk.cyanBright('Example for creating a model file: \t\t') + chalk.white('koleg -g m book') + chalk.green('\t\tCreates Book.js inside models folder.'));
     console.log(chalk.cyanBright('Example for creating a controller file: \t') + chalk.white('koleg -g c book') + chalk.green('\t\tCreates BooksController.js inside controllers folder.'));
     console.log(chalk.cyanBright('Example for creating a route file: \t\t') + chalk.white('koleg -g r book') + chalk.green('\t\tCreates books.js inside routes folder.'));
     console.log(chalk.cyanBright('Example for creating a seeder file: \t\t') + chalk.white('koleg -g s book') + chalk.green('\t\tCreates booksSeeder.js inside seeders folder.'));
     console.log(chalk.cyanBright('Example for creating a resource file: \t\t') + chalk.white('koleg -g re book') + chalk.green('\tCreates all of the above except seeder in their correct order.'));
+    console.log(chalk.cyanBright('Example for generating auth: \t\t\t') + chalk.white('koleg -g auth') + chalk.green('\t\tSee auth description.'));
     break;
   }
   default: {
